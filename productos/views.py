@@ -3,6 +3,7 @@ from django.urls import reverse_lazy
 from rest_framework import viewsets
 from .models import Producto
 from .serializers import ProductoSerializer
+from .forms import ProductoForm  # ← Importación del formulario personalizado
 
 # Vistas basadas en clases para el CRUD web
 class ProductoListView(ListView):
@@ -15,13 +16,13 @@ class ProductoDetailView(DetailView):
 
 class ProductoCreateView(CreateView):
     model = Producto
-    fields = '__all__'
+    form_class = ProductoForm  # ← Usamos el formulario personalizado
     template_name = 'productos/producto_form.html'
     success_url = reverse_lazy('producto_list')
 
 class ProductoUpdateView(UpdateView):
     model = Producto
-    fields = '__all__'
+    form_class = ProductoForm  # ← Usamos el formulario personalizado
     template_name = 'productos/producto_form.html'
     success_url = reverse_lazy('producto_list')
 
