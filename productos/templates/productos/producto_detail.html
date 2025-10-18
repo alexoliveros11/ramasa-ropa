@@ -1,0 +1,14 @@
+{% extends 'productos/base.html' %}
+{% block title %}Detalle del Producto{% endblock %}
+{% block content %}
+<h2>{{ object.nombre }}</h2>
+<p>{{ object.descripcion }}</p>
+<p><strong>Precio:</strong> {{ object.precio }} Bs</p>
+<p><strong>Stock:</strong> {{ object.stock }}</p>
+<p><strong>Disponible:</strong> {{ object.disponible|yesno:"Sí,No" }}</p>
+<div class="mt-3">
+    <a class="btn btn-warning" href="{% url 'producto_update' object.pk %}">Editar</a>
+    <a class="btn btn-danger" href="{% url 'producto_delete' object.pk %}">Eliminar</a>
+    <a class="btn btn-secondary" href="{% url 'producto_list' %}">Volver</a>
+</div>
+{% endblock %}
